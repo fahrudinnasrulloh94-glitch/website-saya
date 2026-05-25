@@ -17,7 +17,9 @@ body {
     font-family:sans-serif;
 }
 
-.container { text-align:center; }
+.container {
+    text-align:center;
+}
 
 canvas {
     background:black;
@@ -41,6 +43,23 @@ select {
     padding:5px;
     border-radius:5px;
 }
+
+/* TOMBOL HP */
+.mobile-controls{
+    margin-top:15px;
+}
+
+.mobile-controls button{
+    width:60px;
+    height:60px;
+    font-size:25px;
+    border:none;
+    border-radius:15px;
+    margin:5px;
+    background:#00ffff;
+    color:black;
+    font-weight:bold;
+}
 </style>
 </head>
 
@@ -53,6 +72,14 @@ select {
     <canvas id="game" width="400" height="400"></canvas>
 
     <h2 id="over" style="display:none;color:red;">GAME OVER</h2>
+
+    <!-- TOMBOL HP -->
+    <div class="mobile-controls">
+        <button onclick="atas()">⬆</button><br>
+        <button onclick="kiri()">⬅</button>
+        <button onclick="bawah()">⬇</button>
+        <button onclick="kanan()">➡</button>
+    </div>
 
     <div class="controls">
         🎨 Warna:
@@ -211,13 +238,42 @@ function loop(){
     draw();
 }
 
-// CONTROL
+// KEYBOARD CONTROL
 document.addEventListener("keydown",e=>{
     if(e.key==="ArrowLeft"&&dx!=1){dx=-1;dy=0;}
     if(e.key==="ArrowRight"&&dx!=-1){dx=1;dy=0;}
     if(e.key==="ArrowUp"&&dy!=1){dx=0;dy=-1;}
     if(e.key==="ArrowDown"&&dy!=-1){dx=0;dy=1;}
 });
+
+// TOMBOL HP
+function kiri(){
+    if(dx!=1){
+        dx=-1;
+        dy=0;
+    }
+}
+
+function kanan(){
+    if(dx!=-1){
+        dx=1;
+        dy=0;
+    }
+}
+
+function atas(){
+    if(dy!=1){
+        dx=0;
+        dy=-1;
+    }
+}
+
+function bawah(){
+    if(dy!=-1){
+        dx=0;
+        dy=1;
+    }
+}
 
 // START
 init();
